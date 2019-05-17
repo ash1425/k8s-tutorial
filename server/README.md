@@ -2,7 +2,7 @@
 
 1. build docker image locally
 
-`./gradlew jobDockerBuild`
+`./gradlew jibDockerBuild` // used google jib https://cloud.google.com/blog/products/gcp/introducing-jib-build-java-docker-images-better
 
 2. deploy to kubernetes 
 
