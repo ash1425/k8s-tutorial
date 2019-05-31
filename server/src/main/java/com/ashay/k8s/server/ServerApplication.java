@@ -7,7 +7,9 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import java.time.LocalDateTime;
+import java.net.InetAddress;
+import java.net.UnknownHostException;
+import java.util.Optional;
 
 @SpringBootApplication
 @RestController
@@ -20,8 +22,9 @@ public class ServerApplication {
     }
 
     @GetMapping
-    public String get() {
+    public String get() throws UnknownHostException {
+        String port = Optional.ofNullable(System.getenv("SERVER_PORT")).orElse("8080");
         log.info("Request received");
-        return "I am server, time is : " + LocalDateTime.now();
+        return String.format("I am running at %s:%s", InetAddress.getLocalHost().getHostAddress(), port);
     }
 }
